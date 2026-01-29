@@ -1,125 +1,586 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thư viện bài học STEM – µSmartLab</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>µSmartLab – THCS chia sẻ bài thí nghiệm EWOD</title>
 
   <style>
     :root{
-      --blue:#1e6cff;
-      --cyan:#38d9ff;
-      --dark:#0b1c3a;
-      --bg:#f4f7fb;
+      --bg:#f3f7ff;
       --card:#ffffff;
-      --muted:#5b6b86;
-      --radius:18px;
-      --shadow:0 10px 26px rgba(0,0,0,.10);
+      --text:#0b1c3a;
+      --muted:#6b7a98;
+      --line:#e7eefc;
+
+      --blue:#2b74ff;
+      --blue2:#55c7ff;
+
+      --shadow: 0 14px 34px rgba(12, 40, 86, .12);
+      --shadow2: 0 10px 22px rgba(12, 40, 86, .10);
+      --radius: 18px;
+      --radius2: 14px;
+
+      --max: 1220px;
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Segoe UI", Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--dark);
-      line-height:1.6;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
     }
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
 
-    /* ===== HEADER ===== */
-    header{
-      position:sticky;
-      top:0;
-      z-index:100;
-      background:linear-gradient(90deg,var(--blue),var(--cyan));
-      box-shadow:0 6px 20px rgba(0,0,0,.15);
-      color:#fff;
+    /* ===== Top header like screenshot ===== */
+    .topbar{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)),
+        url("images/header-sky.jpg");
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(231,238,252,.9);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
     }
-    .nav{
-      max-width:1200px;
-      margin:auto;
-      padding:14px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: 260px 1fr 320px;
+      gap: 14px;
+      align-items: center;
     }
+
     .brand{
       display:flex;
-      gap:10px;
       align-items:center;
-      min-width: 220px;
+      gap:12px;
+      min-width: 240px;
     }
-    .brand img{height:36px}
-    .brand .txt b{display:block; font-size:14px}
-    .brand .txt small{display:block; opacity:.92; font-weight:700}
-
-    .nav-links{
+    .brand img{
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,.10));
+    }
+    .brand .name{
       display:flex;
-      gap:18px;
-      align-items:center;
-      font-weight:700;
-      opacity:.96;
-      flex-wrap:wrap;
+      flex-direction:column;
+      gap:2px;
     }
-    .btn{
+    .brand .name b{font-size:18px;letter-spacing:.2px}
+    .brand .name small{color: rgba(25, 58, 120, .75); font-weight: 800}
+
+    .search{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(214, 227, 255, .9);
+      box-shadow: 0 12px 30px rgba(14, 55, 120, .08);
+      border-radius: 999px;
+      padding: 12px 16px;
+      height: 48px;
+    }
+    .search svg{opacity:.55}
+    .search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      font-size:14px;
+      font-weight: 750;
+      color: var(--text);
+    }
+    .search input::placeholder{color: rgba(75, 96, 140, .65); font-weight: 750}
+
+    .right-nav{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap: 18px;
+      color: rgba(25, 58, 120, .85);
+      font-weight: 850;
+    }
+    .right-nav a{padding: 8px 10px; border-radius: 12px}
+    .right-nav a:hover{background: rgba(255,255,255,.55)}
+
+    .user{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      margin-left: 6px;
+    }
+    .badge{
+      width:22px;height:22px;
+      border-radius: 999px;
+      background: #ff4d4f;
+      color:#fff;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:10px 18px;
-      border-radius:999px;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.35);
-      color:#fff;
-      background:transparent;
+      font-size: 12px;
+      font-weight: 950;
+      box-shadow: 0 10px 18px rgba(255, 77, 79, .25);
+      margin-right: -6px;
+      transform: translateY(-8px);
     }
-    .btn.primary{
-      background:#fff;
-      color:var(--blue);
-      border:none;
+    .avatar{
+      width:40px;height:40px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(43,116,255,.25), rgba(85,199,255,.25));
+      border: 1px solid rgba(214,227,255,.9);
+      overflow:hidden;
+      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+
+    /* ===== Page title ===== */
+    .page{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 18px 60px;
+    }
+    .title{
+      text-align:center;
+      margin: 22px 0 18px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: .2px;
+      color: rgba(23, 63, 140, .92);
+      text-shadow: 0 12px 34px rgba(43, 116, 255, .12);
+      font-weight: 950;
     }
 
-    /* ===== LAYOUT ===== */
-    .wrap{
-      max-width:1200px;
-      margin:auto;
-      padding:34px 20px 70px;
-    }
-
-    .hero{
-      background:#eaf2ff;
-      border-radius:26px;
-      padding:34px 28px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:24px;
+    /* ===== Tabs ===== */
+    .tabs{
+      display:flex;
+      gap: 12px;
       align-items:center;
-      box-shadow: var(--shadow);
+      justify-content:flex-start;
+      margin: 10px 0 16px;
     }
-    .hero h1{margin:0 0 8px; font-size:32px; line-height:1.2}
-    .hero p{margin:0; color:var(--muted); font-weight:600; max-width:70ch}
-    .hero .badge-row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:14px;
+    .tab{
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(214,227,255,.9);
+      box-shadow: 0 10px 20px rgba(14,55,120,.06);
+      padding: 10px 16px;
+      border-radius: 14px;
+      font-weight: 900;
+      color: rgba(35, 63, 120, .9);
+      cursor:pointer;
+      user-select:none;
     }
-    .badge{
-      background:#fff;
-      border-radius:999px;
-      padding:8px 12px;
-      font-weight:800;
-      font-size:13px;
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    .tab.active{
+      background: linear-gradient(135deg, rgba(43,116,255,.95), rgba(85,199,255,.95));
+      color:#fff;
+      border: none;
+      box-shadow: 0 14px 28px rgba(43,116,255,.18);
     }
 
-    .hero-right{
+    /* ===== Main layout: feed + sidebar ===== */
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items:start;
+    }
+
+    /* Cards grid (2 columns like screenshot) */
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(231,238,252,.95);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+    }
+    .card .thumb{
+      height: 190px;
+      background: #dbe8ff;
+      overflow:hidden;
+    }
+    .card .thumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.01);
+    }
+    .card .body{
+      padding: 14px 14px 16px;
+    }
+    .card h3{
+      margin: 2px 0 6px;
+      font-size: 20px;
+      letter-spacing:.2px;
+      font-weight: 950;
+    }
+    .card p{
+      margin:0 0 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .rating{
       display:flex;
       align-items:center;
-      justify-content:center;
-      padding:10px;
+      gap: 10px;
+      font-weight: 950;
+      color: rgba(25,58,120,.92);
     }
-    .hero-right img{
-      width:min(280px, 90%);
-      height:auto;
-      filter
+    .stars{
+      letter-spacing: 1px;
+      color: #f5b301;
+      text-shadow: 0 6px 16px rgba(245,179,1,.12);
+    }
+
+    /* Sidebar */
+    .side{
+      position: sticky;
+      top: 92px;
+      display:flex;
+      flex-direction:column;
+      gap: 16px;
+    }
+    .panel{
+      background: var(--card);
+      border: 1px solid rgba(231,238,252,.95);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .panel .head{
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid rgba(231,238,252,.95);
+      font-weight: 950;
+      font-size: 18px;
+      color: rgba(25,58,120,.92);
+    }
+    .resource{
+      display:flex;
+      gap: 12px;
+      padding: 12px 14px;
+      align-items:center;
+    }
+    .resource + .resource{border-top: 1px solid rgba(231,238,252,.95)}
+    .ico{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(43,116,255,.16), rgba(85,199,255,.16));
+      border: 1px solid rgba(214,227,255,.9);
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 1000;
+      color: rgba(25,58,120,.85);
+    }
+    .rinfo{flex:1}
+    .rinfo b{display:block; font-weight: 950}
+    .rmeta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .pill-mini{
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(43,116,255,.10);
+      color: rgba(25,58,120,.9);
+      font-weight: 950;
+      font-size: 12px;
+    }
+    .arrow{
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(43,116,255,.10);
+      display:flex;align-items:center;justify-content:center;
+      color: rgba(25,58,120,.85);
+      font-weight: 1000;
+      flex:0 0 auto;
+    }
+
+    .map{
+      padding: 14px;
+    }
+    .map h4{
+      margin:0 0 10px;
+      font-size: 16px;
+      font-weight: 950;
+      color: rgba(25,58,120,.92);
+    }
+    .map .img{
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(231,238,252,.95);
+      box-shadow: 0 10px 22px rgba(12,40,86,.08);
+    }
+    .map .img img{width:100%; height: 210px; object-fit:cover}
+
+    /* Small helper buttons */
+    .linkbtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-weight: 950;
+      border: 1px solid rgba(214,227,255,.95);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 10px 22px rgba(14,55,120,.06);
+    }
+    .linkbtn:hover{background:#fff}
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .topbar-inner{grid-template-columns: 240px 1fr 300px}
+      .layout{grid-template-columns: 1fr}
+      .side{position:relative; top:auto}
+    }
+    @media (max-width: 860px){
+      .topbar-inner{grid-template-columns: 1fr; gap:10px}
+      .right-nav{justify-content:space-between}
+      .cards{grid-template-columns: 1fr}
+      .tabs{justify-content:center; flex-wrap:wrap}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <!-- Left brand -->
+      <a class="brand" href="index.html" aria-label="Về trang chủ">
+        <!-- dùng logo của bạn -->
+        <img src="images/logo.png" alt="µSmartLab Logo">
+        <div class="name">
+          <b>µSmartlab</b>
+          <small>Một giọt học lớn</small>
+        </div>
+      </a>
+
+      <!-- Search -->
+      <div class="search" role="search" aria-label="Tìm kiếm bài thí nghiệm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 21l-4.3-4.3m1.3-5.2a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input id="q" placeholder="Tìm kiếm bài thí nghiệm EWOD..." />
+      </div>
+
+      <!-- Right menu + user -->
+      <div class="right-nav">
+        <a href="courses.html">Khóa học</a>
+        <a href="resources.html">Tài nguyên</a>
+        <a href="forum.html">Diễn đàn</a>
+
+        <div class="user" title="Thông báo & tài khoản">
+          <span class="badge">1</span>
+          <div class="avatar">
+            <!-- thay avatar nếu có -->
+            <img src="images/avatar.jpg" alt="User">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="page">
+
+    <h1 class="title">THCS chia sẻ bài thí nghiệm EWOD</h1>
+
+    <!-- Tabs -->
+    <div class="tabs" aria-label="Bộ lọc nhanh">
+      <div class="tab active" data-tab="new">Mới nhất</div>
+      <div class="tab" data-tab="popular">Phổ biến</div>
+      <div class="tab" data-tab="free">Miễn phí</div>
+    </div>
+
+    <div class="layout">
+
+      <!-- LEFT: cards feed -->
+      <section>
+        <div class="cards" id="cards">
+
+          <!-- Card 1 -->
+          <a class="card" href="lessons/nghia-tan-intro.html"
+             data-tags="new popular free nghia-tan giới thiệu điều khiển giọt nước ewod"
+          >
+            <div class="thumb">
+              <img src="images/card-nghia-tan.jpg" alt="THCS Nghĩa Tân">
+            </div>
+            <div class="body">
+              <h3>THCS Nghĩa Tân</h3>
+              <p>Giới thiệu về điều khiển giọt nước EWOD</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span>4.9</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a class="card" href="lessons/ngu-hiep-build.html"
+             data-tags="new popular ngu-hiep xây dựng thiết bị ewod hướng dẫn thực hành"
+          >
+            <div class="thumb">
+              <img src="images/card-ngu-hiep-1.jpg" alt="THCS Ngũ Hiệp">
+            </div>
+            <div class="body">
+              <h3>THCS Ngũ Hiệp</h3>
+              <p>Xây dựng thiết bị EWOD: Hướng dẫn thực hành</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span>4.8</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a class="card" href="lessons/nang-khieu-foundation.html"
+             data-tags="new free nang-khieu nguyên lý cơ sở cách sử dụng"
+          >
+            <div class="thumb">
+              <img src="images/card-nang-khieu.jpg" alt="THCS Năng khiếu ĐHSPHN">
+            </div>
+            <div class="body">
+              <h3>THCS Năng khiếu ĐHSPHN</h3>
+              <p>Nguyên lý EWOD: Cơ sở và cách sử dụng</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span>4.7</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a class="card" href="lessons/ngu-hiep-demo.html"
+             data-tags="popular ngu-hiep trình diễn thiết bị ewod tiên tiến"
+          >
+            <div class="thumb">
+              <img src="images/card-ngu-hiep-2.jpg" alt="THCS Ngũ Hiệp">
+            </div>
+            <div class="body">
+              <h3>THCS Ngũ Hiệp</h3>
+              <p>Trình diễn thiết bị EWOD tiên tiến</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span>4.8</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- RIGHT: sidebar -->
+      <aside class="side">
+
+        <div class="panel">
+          <div class="head">Tài nguyên nổi bật</div>
+
+          <a class="resource" href="resources/ewod-handbook.pdf">
+            <div class="ico">📄</div>
+            <div class="rinfo">
+              <b>Sổ tay EWOD (PDF)</b>
+              <div class="rmeta">
+                <span class="stars">★★★★★</span>
+                <span>4.9</span>
+              </div>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="resource" href="resources/pcb-ewod.html">
+            <div class="ico">🧩</div>
+            <div class="rinfo">
+              <b>Mạch PCB EWOD</b>
+              <div class="rmeta">
+                <span class="pill-mini">MỚI</span>
+                <span class="stars">★★★★★</span>
+                <span>6.7k</span>
+                <span>4.7</span>
+              </div>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="resource" href="resources/python-ewod-ai.html">
+            <div class="ico">🐍</div>
+            <div class="rinfo">
+              <b>Lập trình Python phân tích EWOD AI</b>
+              <div class="rmeta">
+                <span class="stars">★★★★★</span>
+                <span>6.1k</span>
+                <span>4.8</span>
+              </div>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+        </div>
+
+        <div class="panel">
+          <div class="head">Điểm sáng các vùng xa</div>
+          <div class="map">
+            <div class="img">
+              <img src="images/map-vietnam.jpg" alt="Bản đồ Việt Nam">
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <script>
+    // Tabs filter (new / popular / free) + search
+    const tabs = document.querySelectorAll(".tab");
+    const cards = document.querySelectorAll(".card");
+    const input = document.getElementById("q");
+
+    let activeTab = "new";
+
+    function apply(){
+      const q = (input.value || "").trim().toLowerCase();
+
+      cards.forEach(c=>{
+        const tags = (c.getAttribute("data-tags") || "").toLowerCase();
+        const okTab = tags.includes(activeTab);
+        const okSearch = !q ? true : tags.includes(q);
+        c.style.display = (okTab && okSearch) ? "block" : "none";
+      });
+    }
+
+    tabs.forEach(t=>{
+      t.addEventListener("click", ()=>{
+        tabs.forEach(x=>x.classList.remove("active"));
+        t.classList.add("active");
+        activeTab = t.getAttribute("data-tab");
+        apply();
+      });
+    });
+
+    input.addEventListener("input", apply);
+    apply(); // init
+  </script>
+
+</body>
+</html>
