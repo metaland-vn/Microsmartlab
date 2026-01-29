@@ -1,276 +1,286 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>µSmartLab – EWOD cho giáo dục STEM THCS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>µSmartLab – EWOD STEM AI & IoT</title>
 
-<style>
-:root{
-  --blue:#1e6cff;
-  --cyan:#38d9ff;
-  --dark:#0b1c3a;
-  --bg:#f4f7fb;
-  --card:#ffffff;
-  --radius:18px;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:"Segoe UI",Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--dark);
-  line-height:1.6;
-}
-a{text-decoration:none;color:inherit}
+  <style>
+    :root{
+      --blue:#2b74ff;
+      --cyan:#55c7ff;
+      --dark:#0b1c3a;
+      --muted:#5f6f8e;
+      --bg:#f3f7ff;
+      --card:#ffffff;
+      --radius:18px;
+      --shadow:0 14px 34px rgba(12,40,86,.14);
+      --max:1200px;
+    }
 
-/* HEADER */
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:linear-gradient(90deg,var(--blue),var(--cyan));
-  box-shadow:0 6px 20px rgba(0,0,0,.15);
-}
-.nav{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.nav img{height:36px}
-.nav ul{
-  list-style:none;
-  display:flex;
-  gap:22px;
-  margin:0;
-  padding:0;
-  font-weight:600;
-  color:#fff;
-}
-.btn{
-  background:#fff;
-  color:var(--blue);
-  padding:10px 20px;
-  border-radius:999px;
-  font-weight:700;
-}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:var(--bg);
+      color:var(--dark);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
 
-/* HERO */
-.hero{
-  background:linear-gradient(180deg,var(--blue),var(--cyan));
-  color:#fff;
-  padding:90px 20px 110px;
-}
-.hero-wrap{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-.hero h1{font-size:40px;line-height:1.2}
-.hero p{max-width:520px}
-.hero-actions{margin-top:26px;display:flex;gap:16px}
-.hero img{width:100%;max-width:420px}
+    /* ===== HEADER ===== */
+    header{
+      background: linear-gradient(90deg,var(--blue),var(--cyan));
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .nav{
+      max-width:var(--max);
+      margin:auto;
+      padding:18px 20px; /* tăng chiều cao header */
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:260px;
+    }
+    .brand img{
+      height:56px;        /* LOGO TO */
+      width:auto;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,.25));
+    }
+    .brand .txt b{
+      display:block;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.3px;
+      color:#fff;
+    }
+    .brand .txt small{
+      font-size:14px;
+      font-weight:800;
+      opacity:.95;
+      color:#e8f4ff;
+    }
 
-/* SECTION */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:80px 20px;
-}
-section h2{text-align:center;font-size:30px;margin-bottom:40px}
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-weight:800;
+      color:#eaf3ff;
+    }
+    .menu a{
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    .menu a:hover{
+      background:rgba(255,255,255,.15);
+    }
 
-/* EWOD */
-.ewod-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:32px;
-  align-items:center;
-}
-.ewod-grid img{width:100%;border-radius:var(--radius)}
-.ewod-item{
-  background:var(--card);
-  padding:18px 20px;
-  border-radius:var(--radius);
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-  margin-bottom:14px;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:900;
+      background:#fff;
+      color:var(--blue);
+      box-shadow:0 10px 24px rgba(0,0,0,.15);
+    }
 
-/* STEM */
-.stem-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.stem-card{
-  background:var(--card);
-  padding:26px;
-  border-radius:var(--radius);
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-  text-align:center;
-}
-.stem-card img{height:80px;margin-bottom:16px}
+    /* ===== HERO ===== */
+    .hero{
+      max-width:var(--max);
+      margin:40px auto;
+      padding:36px 28px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:30px;
+      align-items:center;
+    }
+    .hero h1{
+      margin:0 0 12px;
+      font-size:42px;
+      line-height:1.15;
+    }
+    .hero p{
+      margin:0 0 18px;
+      font-size:17px;
+      font-weight:650;
+      color:var(--muted);
+    }
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+    .badge{
+      background:#fff;
+      border-radius:999px;
+      padding:8px 14px;
+      font-weight:900;
+      font-size:13px;
+      box-shadow:0 8px 18px rgba(0,0,0,.08);
+    }
 
-/* LIBRARY */
-.library{
-  background:#eaf2ff;
-  border-radius:26px;
-  padding:50px;
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-.library img{width:100%}
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:#fff;
+      border:2px solid #fff;
+      box-shadow:none;
+    }
 
-/* TEAM */
-.team{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-.team img{
-  width:100%;
-  border-radius:var(--radius);
-  box-shadow:0 10px 36px rgba(0,0,0,.15);
-}
+    .hero-img{
+      display:flex;
+      justify-content:center;
+    }
+    .hero-img img{
+      width:min(420px, 100%);
+      filter: drop-shadow(0 18px 28px rgba(0,0,0,.22));
+    }
 
-/* CTA */
-.cta{
-  background:linear-gradient(90deg,var(--blue),var(--cyan));
-  color:#fff;
-  text-align:center;
-  padding:90px 20px;
-}
+    /* ===== SECTION ===== */
+    section{
+      max-width:var(--max);
+      margin:0 auto 60px;
+      padding:0 20px;
+    }
+    section h2{
+      font-size:30px;
+      margin-bottom:14px;
+    }
+    section p{
+      max-width:80ch;
+      color:var(--muted);
+      font-weight:650;
+    }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:14px;
-  color:#666;
-}
+    .grid{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:18px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .card h3{margin:8px 0}
+    .card p{font-size:14px}
 
-@media(max-width:900px){
-  .hero-wrap,.ewod-grid,.library,.team{grid-template-columns:1fr}
-  .stem-grid{grid-template-columns:1fr}
-  .hero h1{font-size:32px}
-}
-</style>
+    /* ===== FOOTER ===== */
+    footer{
+      text-align:center;
+      padding:30px 10px;
+      color:#6b7890;
+      font-weight:650;
+      font-size:13px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:900px){
+      .menu{display:none}
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .brand img{height:48px}
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
   <div class="nav">
-    <img src="images/logo.png">
-    <ul>
-      <li><a href="#">Trang chủ</a></li>
-      <li><a href="#ewod">EWOD</a></li>
-      <li><a href="stem.html">STEM</a></li>
-      <li><a href="#team">Nhóm</a></li>
-    </ul>
-    <a class="btn" href="stem.html">Bài học STEM</a>
+    <a class="brand" href="index.html">
+      <img src="images/logo.png" alt="µSmartLab logo">
+      <div class="txt">
+        <b>µSmartLab</b>
+        <small>Một giọt học lớn</small>
+      </div>
+    </a>
+
+    <nav class="menu">
+      <a href="#ewod">EWOD</a>
+      <a href="#stem">STEM</a>
+      <a href="stem.html">Bài học</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+
+    <a class="btn" href="stem.html">📚 Bài học STEM</a>
   </div>
 </header>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-wrap">
-    <div>
-      <h1>Lab-on-a-Chip EWOD<br>cho giáo dục STEM THCS</h1>
-      <p>
-        µSmartLab mang phòng thí nghiệm vi giọt lên bàn học,
-        tích hợp AI & IoT, an toàn – trực quan – dễ triển khai.
-      </p>
-      <div class="hero-actions">
-        <a class="btn" href="stem.html">Xem bài học STEM</a>
-        <a class="btn" href="#ewod">EWOD là gì?</a>
-      </div>
+  <div>
+    <h1>EWOD – Bộ thí nghiệm STEM<br>tích hợp AI & IoT cho THCS</h1>
+    <p>
+      µSmartLab cho phép học sinh điều khiển vi giọt bằng điện áp,
+      thực hiện thí nghiệm Toán – Lý – Hóa an toàn,
+      kết hợp phân tích dữ liệu và AI.
+    </p>
+
+    <div class="badges">
+      <span class="badge">Chuẩn THCS</span>
+      <span class="badge">An toàn vi giọt</span>
+      <span class="badge">AI & IoT</span>
+      <span class="badge">STEM liên môn</span>
     </div>
-    <img src="images/hero-ewod.png">
+
+    <div class="actions">
+      <a class="btn" href="stem.html">Khám phá bài học STEM</a>
+      <a class="btn secondary" href="#ewod">Xem EWOD</a>
+    </div>
+  </div>
+
+  <div class="hero-img">
+    <img src="images/hero-ewod.png" alt="EWOD µSmartLab">
   </div>
 </div>
 
-<!-- EWOD -->
-<section id="ewod">
-  <h2>EWOD giải quyết vấn đề như thế nào?</h2>
-  <div class="ewod-grid">
-    <img src="images/ewod-board.png">
-    <div>
-      <div class="ewod-item">🔬 Thí nghiệm vi giọt – giảm rủi ro hóa chất</div>
-      <div class="ewod-item">⚡ Quan sát trực tiếp tác dụng của điện áp</div>
-      <div class="ewod-item">🤖 AI phân tích màu dung dịch</div>
-      <div class="ewod-item">📱 Theo dõi kết quả qua Web / App</div>
+<section id="stem">
+  <h2>STEM liên môn – Học qua thí nghiệm thật</h2>
+  <p>
+    Học sinh không chỉ quan sát mà trực tiếp điều khiển, đo đạc,
+    thu thập dữ liệu và phân tích kết quả thí nghiệm EWOD.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>⚡ Vật lý</h3>
+      <p>Quan sát tác dụng của điện áp lên chuyển động vi giọt.</p>
+    </div>
+    <div class="card">
+      <h3>🧪 Hóa học</h3>
+      <p>So sánh nồng độ dung dịch bằng vi giọt an toàn.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Toán học</h3>
+      <p>Phân tích dữ liệu thí nghiệm, bảng và biểu đồ.</p>
     </div>
   </div>
 </section>
-
-<!-- STEM -->
-<section>
-  <h2>Ứng dụng liên môn STEM</h2>
-  <div class="stem-grid">
-    <div class="stem-card">
-      <img src="images/physics.png">
-      <h3>Vật lý</h3>
-      <p>Điều khiển vi giọt bằng điện áp</p>
-    </div>
-    <div class="stem-card">
-      <img src="images/chemistry.png">
-      <h3>Hóa học</h3>
-      <p>So sánh nồng độ – đổi màu an toàn</p>
-    </div>
-    <div class="stem-card">
-      <img src="images/math.png">
-      <h3>Toán học</h3>
-      <p>Thu thập dữ liệu – biểu đồ</p>
-    </div>
-  </div>
-</section>
-
-<!-- LIBRARY -->
-<section>
-  <div class="library">
-    <div>
-      <h2>Thư viện bài học STEM</h2>
-      <p>
-        Không chỉ là bộ thí nghiệm, µSmartLab cung cấp
-        hệ thống bài học chuẩn THCS cho giáo viên & học sinh.
-      </p>
-      <a class="btn" href="stem.html">Truy cập thư viện →</a>
-    </div>
-    <img src="images/library.png">
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="team">
-    <div>
-      <h2>Nhóm phát triển µSmartLab</h2>
-      <p>
-        Dự án được phát triển bởi học sinh và giáo viên đam mê STEM,
-        hướng tới đổi mới giáo dục thực hành tại Việt Nam.
-      </p>
-    </div>
-    <img src="images/team(2).png">
-  </div>
-</section>
-
-<!-- CTA -->
-<div class="cta">
-  <h2>Sẵn sàng đưa phòng thí nghiệm lên bàn học?</h2>
-  <a class="btn" href="stem.html">Khám phá bài học STEM</a>
-</div>
 
 <footer>
-  © 2025 µSmartLab • EWOD • STEM Education
+  © 2026 µSmartLab – EWOD STEM AI & IoT
 </footer>
 
 </body>
