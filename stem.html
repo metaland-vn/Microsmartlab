@@ -18,6 +18,7 @@
 
       --shadow: 0 14px 34px rgba(12, 40, 86, .12);
       --shadow2: 0 10px 22px rgba(12, 40, 86, .10);
+
       --radius: 18px;
       --radius2: 14px;
 
@@ -36,7 +37,7 @@
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
 
-    /* ===== Top header like screenshot ===== */
+    /* ===== TOPBAR (căn giống ảnh mẫu) ===== */
     .topbar{
       background:
         linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)),
@@ -52,32 +53,46 @@
     .topbar-inner{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 14px 18px;
+      padding: 16px 18px; /* tăng nhẹ để cân logo */
       display: grid;
-      grid-template-columns: 260px 1fr 320px;
+      grid-template-columns: 280px 1fr 320px; /* rộng hơn cho logo */
       gap: 14px;
-      align-items: center;
+      align-items: end; /* quan trọng: canh đáy giống ảnh */
     }
 
     .brand{
       display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 240px;
+      align-items:flex-end; /* bám đáy */
+      gap:14px;
+      min-width: 280px;
+      padding-bottom: 2px; /* hạ nhẹ */
     }
     .brand img{
-      width: 52px;
-      height: 52px;
+      width: 72px;
+      height: 72px;
       object-fit: contain;
-      filter: drop-shadow(0 10px 16px rgba(0,0,0,.10));
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,.12));
+      transform: translateY(4px); /* hạ logo xuống giống ảnh */
     }
     .brand .name{
       display:flex;
       flex-direction:column;
       gap:2px;
+      transform: translateY(3px); /* hạ chữ theo logo */
     }
-    .brand .name b{font-size:18px;letter-spacing:.2px}
-    .brand .name small{color: rgba(25, 58, 120, .75); font-weight: 800}
+    .brand .name b{
+      font-size:22px;
+      letter-spacing:.3px;
+      line-height: 1.05;
+      color: rgba(25, 58, 120, .92);
+      font-weight: 950;
+    }
+    .brand .name small{
+      font-size:14px;
+      color: rgba(25, 58, 120, .78);
+      font-weight: 800;
+      line-height: 1.1;
+    }
 
     .search{
       display:flex;
@@ -89,6 +104,7 @@
       border-radius: 999px;
       padding: 12px 16px;
       height: 48px;
+      align-self: center; /* cân trục với logo */
     }
     .search svg{opacity:.55}
     .search input{
@@ -109,6 +125,8 @@
       gap: 18px;
       color: rgba(25, 58, 120, .85);
       font-weight: 850;
+      align-self: center; /* cân với search */
+      white-space: nowrap;
     }
     .right-nav a{padding: 8px 10px; border-radius: 12px}
     .right-nav a:hover{background: rgba(255,255,255,.55)}
@@ -143,7 +161,7 @@
     }
     .avatar img{width:100%;height:100%;object-fit:cover}
 
-    /* ===== Page title ===== */
+    /* ===== PAGE ===== */
     .page{
       max-width: var(--max);
       margin: 0 auto;
@@ -159,7 +177,7 @@
       font-weight: 950;
     }
 
-    /* ===== Tabs ===== */
+    /* ===== TABS ===== */
     .tabs{
       display:flex;
       gap: 12px;
@@ -185,7 +203,7 @@
       box-shadow: 0 14px 28px rgba(43,116,255,.18);
     }
 
-    /* ===== Main layout: feed + sidebar ===== */
+    /* ===== LAYOUT ===== */
     .layout{
       display:grid;
       grid-template-columns: 1fr 360px;
@@ -193,7 +211,6 @@
       align-items:start;
     }
 
-    /* Cards grid (2 columns like screenshot) */
     .cards{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -205,6 +222,11 @@
       border-radius: 18px;
       overflow:hidden;
       box-shadow: var(--shadow2);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(12, 40, 86, .14);
     }
     .card .thumb{
       height: 190px;
@@ -244,10 +266,10 @@
       text-shadow: 0 6px 16px rgba(245,179,1,.12);
     }
 
-    /* Sidebar */
+    /* ===== SIDEBAR ===== */
     .side{
       position: sticky;
-      top: 92px;
+      top: 96px;
       display:flex;
       flex-direction:column;
       gap: 16px;
@@ -311,15 +333,8 @@
       font-weight: 1000;
       flex:0 0 auto;
     }
-
     .map{
       padding: 14px;
-    }
-    .map h4{
-      margin:0 0 10px;
-      font-size: 16px;
-      font-weight: 950;
-      color: rgba(25,58,120,.92);
     }
     .map .img{
       border-radius: 16px;
@@ -329,46 +344,33 @@
     }
     .map .img img{width:100%; height: 210px; object-fit:cover}
 
-    /* Small helper buttons */
-    .linkbtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      height: 42px;
-      padding: 0 14px;
-      border-radius: 999px;
-      font-weight: 950;
-      border: 1px solid rgba(214,227,255,.95);
-      background: rgba(255,255,255,.78);
-      box-shadow: 0 10px 22px rgba(14,55,120,.06);
-    }
-    .linkbtn:hover{background:#fff}
-
-    /* Responsive */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 1100px){
-      .topbar-inner{grid-template-columns: 240px 1fr 300px}
+      .topbar-inner{
+        grid-template-columns: 260px 1fr 300px;
+        align-items: center;
+      }
       .layout{grid-template-columns: 1fr}
       .side{position:relative; top:auto}
     }
     @media (max-width: 860px){
-      .topbar-inner{grid-template-columns: 1fr; gap:10px}
+      .topbar-inner{grid-template-columns: 1fr; gap:10px; align-items:center;}
       .right-nav{justify-content:space-between}
       .cards{grid-template-columns: 1fr}
       .tabs{justify-content:center; flex-wrap:wrap}
+      .brand{min-width:auto; padding-bottom:0;}
+      .brand img{width:64px;height:64px; transform: translateY(2px);}
+      .brand .name{transform: translateY(2px);}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-inner">
 
-      <!-- Left brand -->
       <a class="brand" href="index.html" aria-label="Về trang chủ">
-        <!-- dùng logo của bạn -->
         <img src="images/logo.png" alt="µSmartLab Logo">
         <div class="name">
           <b>µSmartlab</b>
@@ -376,7 +378,6 @@
         </div>
       </a>
 
-      <!-- Search -->
       <div class="search" role="search" aria-label="Tìm kiếm bài thí nghiệm">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M21 21l-4.3-4.3m1.3-5.2a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -384,7 +385,6 @@
         <input id="q" placeholder="Tìm kiếm bài thí nghiệm EWOD..." />
       </div>
 
-      <!-- Right menu + user -->
       <div class="right-nav">
         <a href="courses.html">Khóa học</a>
         <a href="resources.html">Tài nguyên</a>
@@ -393,7 +393,6 @@
         <div class="user" title="Thông báo & tài khoản">
           <span class="badge">1</span>
           <div class="avatar">
-            <!-- thay avatar nếu có -->
             <img src="images/avatar.jpg" alt="User">
           </div>
         </div>
@@ -406,7 +405,6 @@
 
     <h1 class="title">THCS chia sẻ bài thí nghiệm EWOD</h1>
 
-    <!-- Tabs -->
     <div class="tabs" aria-label="Bộ lọc nhanh">
       <div class="tab active" data-tab="new">Mới nhất</div>
       <div class="tab" data-tab="popular">Phổ biến</div>
@@ -415,14 +413,11 @@
 
     <div class="layout">
 
-      <!-- LEFT: cards feed -->
       <section>
         <div class="cards" id="cards">
 
-          <!-- Card 1 -->
           <a class="card" href="lessons/nghia-tan-intro.html"
-             data-tags="new popular free nghia-tan giới thiệu điều khiển giọt nước ewod"
-          >
+             data-tags="new popular free nghia-tan giới thiệu điều khiển giọt nước ewod">
             <div class="thumb">
               <img src="assets/thinghiemtainha.jpg" alt="THCS Nghĩa Tân">
             </div>
@@ -436,10 +431,8 @@
             </div>
           </a>
 
-          <!-- Card 2 -->
           <a class="card" href="lessons/ngu-hiep-build.html"
-             data-tags="new popular ngu-hiep xây dựng thiết bị ewod hướng dẫn thực hành"
-          >
+             data-tags="new popular ngu-hiep xây dựng thiết bị ewod hướng dẫn thực hành">
             <div class="thumb">
               <img src="images/card-ngu-hiep-1.jpg" alt="THCS Ngũ Hiệp">
             </div>
@@ -453,10 +446,8 @@
             </div>
           </a>
 
-          <!-- Card 3 -->
           <a class="card" href="lessons/nang-khieu-foundation.html"
-             data-tags="new free nang-khieu nguyên lý cơ sở cách sử dụng"
-          >
+             data-tags="new free nang-khieu nguyên lý cơ sở cách sử dụng">
             <div class="thumb">
               <img src="assets/minhtrang_training.jpg" alt="THCS Năng khiếu ĐHSPHN">
             </div>
@@ -470,10 +461,8 @@
             </div>
           </a>
 
-          <!-- Card 4 -->
           <a class="card" href="lessons/ngu-hiep-demo.html"
-             data-tags="popular ngu-hiep trình diễn thiết bị ewod tiên tiến"
-          >
+             data-tags="popular ngu-hiep trình diễn thiết bị ewod tiên tiến">
             <div class="thumb">
               <img src="images/card-ngu-hiep-2.jpg" alt="THCS Ngũ Hiệp">
             </div>
@@ -490,7 +479,6 @@
         </div>
       </section>
 
-      <!-- RIGHT: sidebar -->
       <aside class="side">
 
         <div class="panel">
@@ -551,7 +539,6 @@
   </main>
 
   <script>
-    // Tabs filter (new / popular / free) + search
     const tabs = document.querySelectorAll(".tab");
     const cards = document.querySelectorAll(".card");
     const input = document.getElementById("q");
@@ -579,7 +566,7 @@
     });
 
     input.addEventListener("input", apply);
-    apply(); // init
+    apply();
   </script>
 
 </body>
