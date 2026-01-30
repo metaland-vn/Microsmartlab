@@ -15,6 +15,7 @@
       --card:#ffffff;
       --radius:18px;
       --shadow:0 14px 34px rgba(12,40,86,.14);
+      --shadow2:0 10px 24px rgba(0,0,0,.15);
       --max:1200px;
     }
 
@@ -40,7 +41,7 @@
     .nav{
       max-width:var(--max);
       margin:auto;
-      padding:18px 20px; /* tăng chiều cao header */
+      padding:18px 20px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -95,18 +96,44 @@
       font-weight:900;
       background:#fff;
       color:var(--blue);
-      box-shadow:0 10px 24px rgba(0,0,0,.15);
+      box-shadow:var(--shadow2);
+      white-space:nowrap;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:#fff;
+      border:2px solid #fff;
+      box-shadow:none;
     }
 
     /* ===== HERO ===== */
     .hero{
       max-width:var(--max);
-      margin:40px auto;
-      padding:36px 28px;
+      margin:28px auto 10px;
+      padding:26px 20px 10px;
+    }
+    .hero-wrap{
+      border-radius:24px;
+      background: linear-gradient(180deg, rgba(43,116,255,.12), rgba(85,199,255,.08));
+      box-shadow:var(--shadow);
+      padding:34px 28px;
       display:grid;
       grid-template-columns: 1.1fr .9fr;
       gap:30px;
       align-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-wrap:before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width:280px;
+      height:280px;
+      background: radial-gradient(circle at 30% 30%, rgba(85,199,255,.45), rgba(43,116,255,0));
+      filter: blur(2px);
+      border-radius:999px;
+      pointer-events:none;
     }
     .hero h1{
       margin:0 0 12px;
@@ -118,12 +145,13 @@
       font-size:17px;
       font-weight:650;
       color:var(--muted);
+      max-width:70ch;
     }
     .badges{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-bottom:20px;
+      margin-bottom:18px;
     }
     .badge{
       background:#fff;
@@ -138,12 +166,7 @@
       display:flex;
       gap:14px;
       flex-wrap:wrap;
-    }
-    .btn.secondary{
-      background:transparent;
-      color:#fff;
-      border:2px solid #fff;
-      box-shadow:none;
+      align-items:center;
     }
 
     .hero-img{
@@ -151,7 +174,7 @@
       justify-content:center;
     }
     .hero-img img{
-      width:min(420px, 100%);
+      width:min(430px, 100%);
       filter: drop-shadow(0 18px 28px rgba(0,0,0,.22));
     }
 
@@ -163,16 +186,17 @@
     }
     section h2{
       font-size:30px;
-      margin-bottom:14px;
+      margin-bottom:10px;
     }
     section p{
       max-width:80ch;
       color:var(--muted);
       font-weight:650;
+      margin-top:0;
     }
 
     .grid{
-      margin-top:24px;
+      margin-top:22px;
       display:grid;
       grid-template-columns: repeat(3,1fr);
       gap:18px;
@@ -183,24 +207,108 @@
       padding:22px;
       box-shadow:var(--shadow);
     }
-    .card h3{margin:8px 0}
-    .card p{font-size:14px}
+    .card h3{margin:8px 0 6px}
+    .card p{font-size:14px;margin:0;color:var(--muted);font-weight:650}
+
+    /* ===== TEAM ===== */
+    .team{
+      background: linear-gradient(180deg,#f8fbff,#eef4ff);
+      padding:60px 20px;
+      margin-top: 10px;
+    }
+    .team-wrap{
+      max-width:var(--max);
+      margin:auto;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:40px;
+      align-items:center;
+    }
+    .team-text h2{
+      font-size:30px;
+      margin:0 0 10px;
+    }
+    .team-text p{
+      color:var(--muted);
+      font-weight:650;
+      max-width:70ch;
+      margin:0;
+    }
+    .team-photo{
+      display:flex;
+      justify-content:center;
+    }
+    .team-photo img{
+      width:min(560px,100%);
+      border-radius:20px;
+      box-shadow:0 20px 40px rgba(12,40,86,.18);
+    }
+
+    /* ===== SOCIAL ===== */
+    .social{
+      background:#0b1c3a;
+      color:#eaf3ff;
+      padding:46px 20px;
+      text-align:center;
+    }
+    .social h3{
+      margin:0 0 14px;
+      font-size:24px;
+      letter-spacing:.2px;
+    }
+    .social p{
+      margin:0 auto 18px;
+      max-width:80ch;
+      opacity:.9;
+      font-weight:650;
+    }
+    .social-icons{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .social-icons a{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      color:#0b1c3a;
+      box-shadow:0 10px 24px rgba(0,0,0,.25);
+      transition:.2s;
+    }
+    .social-icons a:hover{
+      transform:translateY(-4px);
+    }
+    .social small{
+      display:block;
+      margin-top:16px;
+      opacity:.75;
+      font-weight:650;
+    }
 
     /* ===== FOOTER ===== */
     footer{
       text-align:center;
-      padding:30px 10px;
+      padding:22px 10px 30px;
       color:#6b7890;
       font-weight:650;
       font-size:13px;
+      background: #0b1c3a;
+      color: rgba(234,243,255,.85);
     }
 
     /* ===== RESPONSIVE ===== */
     @media(max-width:900px){
       .menu{display:none}
-      .hero{grid-template-columns:1fr}
+      .hero-wrap{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
       .brand img{height:48px}
+      .team-wrap{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -209,7 +317,7 @@
 
 <header>
   <div class="nav">
-    <a class="brand" href="index.html">
+    <a class="brand" href="index.html" aria-label="Về trang chủ">
       <img src="images/logo.png" alt="µSmartLab logo">
       <div class="txt">
         <b>µSmartLab</b>
@@ -217,7 +325,7 @@
       </div>
     </a>
 
-    <nav class="menu">
+    <nav class="menu" aria-label="Menu">
       <a href="#ewod">EWOD</a>
       <a href="#stem">STEM</a>
       <a href="stem.html">Bài học</a>
@@ -230,32 +338,45 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div>
-    <h1>EWOD – Bộ thí nghiệm STEM<br>tích hợp AI & IoT cho THCS</h1>
-    <p>
-      µSmartLab cho phép học sinh điều khiển vi giọt bằng điện áp,
-      thực hiện thí nghiệm Toán – Lý – Hóa an toàn,
-      kết hợp phân tích dữ liệu và AI.
-    </p>
+  <div class="hero-wrap">
+    <div>
+      <h1>EWOD – Bộ thí nghiệm STEM<br>tích hợp AI & IoT cho THCS</h1>
+      <p>
+        µSmartLab cho phép học sinh điều khiển vi giọt bằng điện áp,
+        thực hiện thí nghiệm Toán – Lý – Hóa an toàn,
+        kết hợp thu thập dữ liệu và phân tích bằng AI.
+      </p>
 
-    <div class="badges">
-      <span class="badge">Chuẩn THCS</span>
-      <span class="badge">An toàn vi giọt</span>
-      <span class="badge">AI & IoT</span>
-      <span class="badge">STEM liên môn</span>
+      <div class="badges">
+        <span class="badge">Chuẩn THCS</span>
+        <span class="badge">An toàn vi giọt</span>
+        <span class="badge">AI & IoT</span>
+        <span class="badge">STEM liên môn</span>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="stem.html">Khám phá bài học STEM</a>
+        <a class="btn secondary" href="#ewod">Xem EWOD</a>
+      </div>
     </div>
 
-    <div class="actions">
-      <a class="btn" href="stem.html">Khám phá bài học STEM</a>
-      <a class="btn secondary" href="#ewod">Xem EWOD</a>
+    <div class="hero-img">
+      <img src="images/hero-ewod.png" alt="EWOD µSmartLab">
     </div>
-  </div>
-
-  <div class="hero-img">
-    <img src="images/hero-ewod.png" alt="EWOD µSmartLab">
   </div>
 </div>
 
+<!-- EWOD (anchor for menu) -->
+<section id="ewod">
+  <h2>EWOD là gì?</h2>
+  <p>
+    EWOD (Electrowetting-on-Dielectric) cho phép điều khiển giọt chất lỏng bằng điện áp.
+    Với µSmartLab, học sinh có thể quan sát hiện tượng vật lý, thực hành vi giọt hóa học
+    và phân tích dữ liệu ngay tại lớp học – an toàn và trực quan.
+  </p>
+</section>
+
+<!-- STEM -->
 <section id="stem">
   <h2>STEM liên môn – Học qua thí nghiệm thật</h2>
   <p>
@@ -277,6 +398,46 @@
       <p>Phân tích dữ liệu thí nghiệm, bảng và biểu đồ.</p>
     </div>
   </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="team-wrap">
+    <div class="team-text">
+      <h2>Nhóm phát triển µSmartLab</h2>
+      <p>
+        µSmartLab được phát triển bởi nhóm học sinh THCS và giáo viên đam mê STEM,
+        hướng tới việc đưa phòng thí nghiệm an toàn lên bàn học.
+        Dự án tập trung vào tính ứng dụng trong lớp học, dễ triển khai,
+        và khuyến khích học sinh sáng tạo các bài thí nghiệm của riêng mình.
+      </p>
+    </div>
+
+    <div class="team-photo">
+      <img src="images/team.jpg" alt="Nhóm phát triển µSmartLab">
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL + CONTACT -->
+<section class="social" id="contact">
+  <h3>Kết nối cộng đồng µSmartLab</h3>
+  <p>
+    Theo dõi các bài thí nghiệm mới, video hướng dẫn, tài liệu EWOD và hoạt động cộng đồng
+    dành cho giáo viên – học sinh THCS.
+  </p>
+
+  <div class="social-icons" aria-label="Mạng xã hội">
+    <!-- Đổi link thật của bạn tại đây -->
+    <a href="https://facebook.com" target="_blank" title="Facebook">📘</a>
+    <a href="https://youtube.com" target="_blank" title="YouTube">▶️</a>
+    <a href="https://tiktok.com" target="_blank" title="TikTok">🎵</a>
+    <a href="mailto:contact@usmartlab.vn" title="Email">✉️</a>
+  </div>
+
+  <small>
+    Email: contact@usmartlab.vn • © 2026 µSmartLab
+  </small>
 </section>
 
 <footer>
