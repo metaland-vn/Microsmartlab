@@ -1,106 +1,345 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bài học STEM – Điều khiển vi giọt bằng điện áp</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bài học EWOD – Điều khiển vi giọt bằng điện áp</title>
 
-<style>
-body{
-  margin:0;
-  font-family:Segoe UI, Arial, sans-serif;
-  background:#f4f7fb;
-  color:#0b1c3a;
-}
-header{
-  background:linear-gradient(90deg,#1e6cff,#38d9ff);
-  color:#fff;
-  padding:14px 20px;
-}
-header a{color:#fff;text-decoration:none;font-weight:600}
-section{
-  max-width:900px;
-  margin:auto;
-  padding:60px 20px;
-}
-h1{text-align:center}
-.box{
-  background:#fff;
-  padding:24px;
-  border-radius:16px;
-  box-shadow:0 6px 20px rgba(0,0,0,.1);
-  margin-bottom:30px;
-}
-ul{line-height:1.8}
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:10px 20px;
-  background:#1e6cff;
-  color:#fff;
-  border-radius:999px;
-  font-weight:600;
-  text-decoration:none;
-}
-</style>
+  <style>
+    :root{
+      --bg:#f3f7ff;
+      --card:#ffffff;
+      --text:#0b1c3a;
+      --muted:#6b7a98;
+      --line:#e7eefc;
+
+      --blue:#2b74ff;
+      --cyan:#55c7ff;
+
+      --shadow: 0 14px 34px rgba(12, 40, 86, .12);
+      --shadow2: 0 10px 22px rgba(12, 40, 86, .10);
+
+      --radius: 18px;
+      --max: 1220px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ===== HEADER (giống index & stem) ===== */
+    header{
+      background: linear-gradient(90deg,var(--blue),var(--cyan));
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .nav{
+      max-width:var(--max);
+      margin:auto;
+      padding:18px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand img{height:56px}
+    .brand b{
+      font-size:22px;
+      font-weight:900;
+      color:#fff;
+    }
+    .brand small{
+      display:block;
+      font-size:14px;
+      font-weight:800;
+      color:#e8f4ff;
+    }
+    .menu{
+      display:flex;
+      gap:18px;
+      font-weight:800;
+      color:#eaf3ff;
+    }
+    .menu a:hover{
+      background:rgba(255,255,255,.15);
+      border-radius:12px;
+      padding:6px 10px;
+    }
+    .btn{
+      padding:12px 18px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--blue);
+      font-weight:900;
+    }
+
+    /* ===== PAGE ===== */
+    main{
+      max-width:var(--max);
+      margin:auto;
+      padding:30px 20px 60px;
+    }
+
+    .breadcrumb{
+      font-size:14px;
+      font-weight:700;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+    .breadcrumb a{color:var(--blue)}
+
+    .lesson-header{
+      background:var(--card);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:30px;
+      margin-bottom:26px;
+    }
+    .lesson-header h1{
+      margin:0 0 10px;
+      font-size:36px;
+      color:rgba(23,63,140,.95);
+      font-weight:950;
+    }
+    .lesson-header p{
+      max-width:80ch;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      gap:20px;
+    }
+
+    .box{
+      background:var(--card);
+      border-radius:18px;
+      box-shadow:var(--shadow2);
+      padding:22px;
+      margin-bottom:20px;
+    }
+    .box h2{
+      margin-top:0;
+      color:rgba(23,63,140,.95);
+      font-size:22px;
+    }
+    .box ul, .box ol{
+      padding-left:20px;
+      font-weight:700;
+      color:var(--muted);
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:#eef4ff;
+      font-weight:800;
+      font-size:13px;
+      margin-right:8px;
+      color:#23407d;
+    }
+
+    /* ===== FOOTER (đồng bộ) ===== */
+    footer{
+      margin-top:40px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.18)),
+        url("../images/header-sky.jpg");
+      background-size:cover;
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow2);
+    }
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .footer-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .footer-brand img{width:48px}
+    .footer-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .footer-links a{
+      padding:6px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(214,227,255,.7);
+      font-weight:800;
+    }
+    .footer-copy{
+      margin-top:14px;
+      text-align:center;
+      font-size:13px;
+      font-weight:800;
+      color:rgba(25,58,120,.7);
+    }
+
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <a href="../stem.html">← Quay lại thư viện bài học</a>
+  <div class="nav">
+    <a class="brand" href="../index.html">
+      <img src="../images/logo.png" alt="µSmartLab">
+      <div>
+        <b>µSmartLab</b>
+        <small>Một giọt học lớn</small>
+      </div>
+    </a>
+
+    <nav class="menu">
+      <a href="../index.html#ewod">EWOD</a>
+      <a href="../index.html#stem">STEM</a>
+      <a href="../stem.html" style="font-weight:900;">Bài học</a>
+    </nav>
+
+    <a class="btn" href="../stem.html">📚 Thư viện STEM</a>
+  </div>
 </header>
 
-<section>
-  <h1>🔬 Điều khiển vi giọt bằng điện áp (Vật lý THCS)</h1>
+<main>
 
-  <div class="box">
-    <h2>1. Mục tiêu bài học</h2>
-    <ul>
-      <li>Hiểu tác dụng của điện áp lên chuyển động chất lỏng</li>
-      <li>Quan sát trực tiếp hiện tượng vật lý qua EWOD</li>
-      <li>Rèn kỹ năng quan sát và ghi chép dữ liệu</li>
-    </ul>
+  <div class="breadcrumb">
+    <a href="../index.html">Trang chủ</a> ›
+    <a href="../stem.html">STEM</a> ›
+    <span>Bài học Vật lý</span>
   </div>
 
-  <div class="box">
-    <h2>2. Dụng cụ & vật liệu</h2>
-    <ul>
-      <li>Bộ thí nghiệm µSmartLab EWOD</li>
-      <li>Giọt dung dịch màu</li>
-      <li>Thiết bị điều khiển / Web App</li>
-    </ul>
-  </div>
+  <section class="lesson-header">
+    <span class="tag">Vật lý 7–9</span>
+    <span class="tag">EWOD</span>
+    <span class="tag">An toàn</span>
 
-  <div class="box">
-    <h2>3. Các bước tiến hành</h2>
-    <ol>
-      <li>Đặt giọt dung dịch lên chip EWOD</li>
-      <li>Kích hoạt điện áp tại các điện cực</li>
-      <li>Quan sát hướng và tốc độ di chuyển của giọt</li>
-      <li>Thay đổi điện áp và so sánh kết quả</li>
-    </ol>
-  </div>
-
-  <div class="box">
-    <h2>4. Câu hỏi thảo luận</h2>
-    <ul>
-      <li>Khi tăng điện áp, giọt di chuyển nhanh hay chậm?</li>
-      <li>Điều gì xảy ra nếu ngắt điện áp?</li>
-      <li>Liên hệ với các ứng dụng thực tế?</li>
-    </ul>
-  </div>
-
-  <div class="box">
-    <h2>5. Mở rộng STEM</h2>
+    <h1>Điều khiển vi giọt bằng điện áp</h1>
     <p>
-      Học sinh có thể đo thời gian di chuyển của giọt và lập bảng – biểu đồ
-      (liên môn Toán học).
+      Bài học giúp học sinh quan sát trực tiếp tác dụng của điện áp lên chuyển động
+      của vi giọt trên chip EWOD, qua đó hiểu bản chất dòng điện và ứng dụng công nghệ.
     </p>
+  </section>
+
+  <section class="grid">
+
+    <div>
+
+      <div class="box">
+        <h2>🎯 Mục tiêu bài học</h2>
+        <ul>
+          <li>Hiểu tác dụng của điện áp lên chất lỏng</li>
+          <li>Quan sát chuyển động vi giọt bằng EWOD</li>
+          <li>Rèn kỹ năng quan sát và phân tích</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>🧪 Dụng cụ & vật liệu</h2>
+        <ul>
+          <li>Bộ thí nghiệm µSmartLab EWOD</li>
+          <li>Dung dịch màu an toàn</li>
+          <li>Thiết bị điều khiển / Web App</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>⚙️ Các bước tiến hành</h2>
+        <ol>
+          <li>Đặt giọt dung dịch lên chip EWOD</li>
+          <li>Cấp điện áp cho các điện cực</li>
+          <li>Quan sát hướng và tốc độ di chuyển</li>
+          <li>Thay đổi điện áp và so sánh kết quả</li>
+        </ol>
+      </div>
+
+      <div class="box">
+        <h2>❓ Câu hỏi thảo luận</h2>
+        <ul>
+          <li>Điều gì xảy ra khi tăng điện áp?</li>
+          <li>Khi ngắt điện áp, giọt sẽ thế nào?</li>
+          <li>Liên hệ ứng dụng thực tế?</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <aside>
+
+      <div class="box">
+        <h2>🔎 Mở rộng STEM</h2>
+        <p class="muted">
+          Học sinh đo thời gian di chuyển của giọt, lập bảng số liệu và vẽ biểu đồ,
+          liên hệ với kiến thức Toán học.
+        </p>
+      </div>
+
+      <div class="box">
+        <h2>📌 Gợi ý giáo viên</h2>
+        <p class="muted">
+          Có thể tổ chức hoạt động nhóm, cho học sinh dự đoán trước kết quả
+          và so sánh với thực nghiệm.
+        </p>
+      </div>
+
+    </aside>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-row">
+    <div class="footer-brand">
+      <img src="../images/logo.png" alt="µSmartLab">
+      <div>
+        <b>µSmartLab</b><br>
+        <small>EWOD • STEM • AI & IoT cho THCS</small>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="../index.html">Trang chủ</a>
+      <a href="../stem.html">STEM</a>
+      <a href="../index.html#contact">Liên hệ</a>
+    </div>
   </div>
 
-  <a class="btn" href="../index.html">Xem lại sản phẩm µSmartLab</a>
-</section>
+  <div class="footer-copy">
+    © <span id="y"></span> µSmartLab – Một giọt học lớn
+  </div>
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
